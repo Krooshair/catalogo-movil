@@ -1,24 +1,20 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Stack } from 'expo-router'
+import { Text } from 'react-native'
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
+function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: '#4DC902' },
+          headerTintColor: 'white',
+          headerTitle: "",
+          headerLeft: () => <Text className='text-xl font-bold text-white'>Tienda virtual</Text>
+        }}
+      />
+    </SafeAreaProvider>
+  )
 }
+
+export default Layout
