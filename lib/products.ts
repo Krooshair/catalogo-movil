@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { errorAxios } from './handlerError'
 
 export type Product = {
   id: number
@@ -14,15 +15,26 @@ const instance = axios.create({
   timeout: 10000,
 })
 
-export const getAllProducts = async (): Promise<Product[]> => {
-  const products = await instance.get<Product[]>('/products')
+export const getAllProducts = async (): Promise<Product[] | string> => {
+  try {
+    const products = await instance.get<Product[]>('/products')
 
-  return products.data
+    return products.data
+  } catch (er) {
+    const axiosError = er as AxiosError
+    const isError = errorAxios(axiosError)
+    console.log(isError)
+    return isError
+  }
 }
 
-export const getProductById = async(id: number): Promise<Product> => {
-  const product = await instance.get<Product>(`/products/${id}`);
+export const getProductById = async (id: number): Promise<Product | string> => {
+  try {
+    const product = await instance.get<Product>(`/products/${id}`)
 
-
-  return product.data;
+    return product.data
+  } catch (error) {
+    console.log(error)
+    return 'Ocurrio algo'
+  }
 }

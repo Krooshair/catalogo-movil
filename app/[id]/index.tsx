@@ -14,7 +14,11 @@ export default function DetailProduct() {
       const loadData = async () => {
         const data = await getProductById(Number(id))
 
-        setProduct(data)
+        if (typeof data == 'string') {
+          alert(data)
+        } else {
+          setProduct(data)
+        }
         setIsLoading(false)
       }
 
@@ -34,7 +38,7 @@ export default function DetailProduct() {
       />
       {product ? (
         <ScrollView contentContainerStyle={{ padding: 12 }}>
-          <View className='justify-start items-start'>
+          <View className="justify-start items-start">
             <Image source={{ uri: product.image }} className="w-full h-80 mb-3" style={{ resizeMode: 'contain' }} />
             <View className="bg-green-200 w-fit px-3 py-1 rounded-lg mb-1">
               <Text className="text-gray-400 text-xs">{product.category}</Text>

@@ -22,7 +22,8 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.krooshair.reactnativecourse"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -30,6 +31,12 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fa951205-8ff3-498e-9689-0e93d43d6d2c"
+      }
+    }
   }
 }

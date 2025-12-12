@@ -17,8 +17,12 @@ const Main = () => {
       setIsLoading(true)
       const data = await getAllProducts()
 
-      setProducts(data)
-      setFiltered(data)
+      if (typeof data == 'string') {
+        alert(data)
+      } else {
+        setProducts(data)
+        setFiltered(data)
+      }
       setIsLoading(false)
     }
 
